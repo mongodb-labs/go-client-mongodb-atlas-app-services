@@ -1,4 +1,4 @@
-# go-client-mongodb-atlas
+# go-client-mongodb-realm
 [![PkgGoDev](https://pkg.go.dev/badge/go.mongodb.org/realm)](https://pkg.go.dev/go.mongodb.org/realm)
 ![CI](https://github.com/mongodb/go-client-mongodb-atlas/workflows/CI/badge.svg)
 

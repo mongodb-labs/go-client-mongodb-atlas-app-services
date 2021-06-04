@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: MongoDB Realm Support
+    url: https://support.mongodb.com/
+    about: Support is provided under MongoDB support plans. Please submit support questions within the Realm UI.
+  - name: MongoDB Realm
+    url: https://www.mongodb.com/realm
+    about: Learn more about MongoDB Realm

@@ -22,6 +22,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -231,7 +232,7 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Res
 
 	response := &Response{Response: resp}
 
-	err = mongodbatlas.CheckResponse(resp)
+	err = CheckResponse(resp)
 	if err != nil {
 		return response, err
 	}
@@ -290,4 +291,45 @@ func setQueryParams(s string, opt interface{}) (string, error) {
 
 	origURL.RawQuery = origValues.Encode()
 	return origURL.String(), nil
+}
+
+func (r *ErrorResponse) Error() string {
+	return fmt.Sprintf("%v %v: %d (request %q) %v",
+		r.Response.Request.Method, r.Response.Request.URL, r.Response.StatusCode, r.ErrorCode, r.Detail)
+}
+
+// CheckResponse checks the API response for errors, and returns them if present. A response is considered an
+// error if it has a status code outside the 200 range. API error responses are expected to have either no response
+// body, or a JSON response body that maps to ErrorResponse. Any other response body will be silently ignored.
+func CheckResponse(r *http.Response) error {
+	if c := r.StatusCode; c >= 200 && c <= 299 {
+		return nil
+	}
+
+	errorResponse := &ErrorResponse{Response: r}
+	data, err := ioutil.ReadAll(r.Body)
+	if err == nil && len(data) > 0 {
+		err := json.Unmarshal(data, errorResponse)
+		if err != nil {
+			log.Printf("[DEBUG] unmarshal error response: %s", err)
+			errorResponse.Reason = string(data)
+		}
+	}
+
+	return errorResponse
+}
+
+// ErrorResponse reports the error caused by an API request.
+type ErrorResponse struct {
+	// HTTP response that caused this error
+	Response *http.Response
+
+	// The error code as specified in https://docs.atlas.mongodb.com/reference/api/api-errors/
+	ErrorCode string `json:"error_code"`
+
+	// A short description of the error, which is simply the HTTP status phrase.
+	Reason string `json:"reason"`
+
+	// A more detailed description of the error.
+	Detail string `json:"error,omitempty"`
 }

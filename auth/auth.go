@@ -21,7 +21,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 )
@@ -121,7 +120,7 @@ func (c *Config) doAuthRoundTrip(req *http.Request) (*Token, error) {
 		return nil, err
 	}
 	const maxBodySlurpSize = 1 << 20
-	body, err := ioutil.ReadAll(io.LimitReader(resp.Body, maxBodySlurpSize))
+	body, err := io.ReadAll(io.LimitReader(resp.Body, maxBodySlurpSize))
 	defer resp.Body.Close()
 	if err != nil {
 		return nil, fmt.Errorf("auth: cannot fetch token: %w", err)

@@ -21,7 +21,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
@@ -224,7 +223,7 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Res
 		// won't reuse it anyway.
 		const maxBodySlurpSize = 2 << 10
 		if resp.ContentLength == -1 || resp.ContentLength <= maxBodySlurpSize {
-			_, _ = io.CopyN(ioutil.Discard, resp.Body, maxBodySlurpSize)
+			_, _ = io.CopyN(io.Discard, resp.Body, maxBodySlurpSize)
 		}
 
 		resp.Body.Close()
@@ -247,7 +246,7 @@ func (c *Client) Do(ctx context.Context, req *http.Request, v interface{}) (*Res
 		}
 
 		response.Raw = raw.Bytes()
-		body = ioutil.NopCloser(raw)
+		body = io.NopCloser(raw)
 	}
 
 	if v != nil {
@@ -293,6 +292,21 @@ func setQueryParams(s string, opt interface{}) (string, error) {
 	return origURL.String(), nil
 }
 
+// ErrorResponse reports the error caused by an API request.
+type ErrorResponse struct {
+	// HTTP response that caused this error
+	Response *http.Response
+
+	// The error code as specified in https://docs.atlas.mongodb.com/reference/api/api-errors/
+	ErrorCode string `json:"error_code"`
+
+	// A short description of the error, which is simply the HTTP status phrase.
+	Reason string `json:"reason"`
+
+	// A more detailed description of the error.
+	Detail string `json:"error,omitempty"`
+}
+
 func (r *ErrorResponse) Error() string {
 	return fmt.Sprintf("%v %v: %d (request %q) %v",
 		r.Response.Request.Method, r.Response.Request.URL, r.Response.StatusCode, r.ErrorCode, r.Detail)
@@ -307,7 +321,7 @@ func CheckResponse(r *http.Response) error {
 	}
 
 	errorResponse := &ErrorResponse{Response: r}
-	data, err := ioutil.ReadAll(r.Body)
+	data, err := io.ReadAll(r.Body)
 	if err == nil && len(data) > 0 {
 		err := json.Unmarshal(data, errorResponse)
 		if err != nil {
@@ -317,19 +331,4 @@ func CheckResponse(r *http.Response) error {
 	}
 
 	return errorResponse
-}
-
-// ErrorResponse reports the error caused by an API request.
-type ErrorResponse struct {
-	// HTTP response that caused this error
-	Response *http.Response
-
-	// The error code as specified in https://docs.atlas.mongodb.com/reference/api/api-errors/
-	ErrorCode string `json:"error_code"`
-
-	// A short description of the error, which is simply the HTTP status phrase.
-	Reason string `json:"reason"`
-
-	// A more detailed description of the error.
-	Detail string `json:"error,omitempty"`
 }

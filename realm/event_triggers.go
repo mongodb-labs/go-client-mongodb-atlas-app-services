@@ -171,7 +171,7 @@ func (s *EventTriggersServiceOp) Delete(ctx context.Context, groupID, appID, tri
 	return s.Client.Do(ctx, req, nil)
 }
 
-// EventTrigger Represents a response of a trigger
+// EventTrigger Represents a response of a trigger.
 type EventTrigger struct {
 	ID              string                 `json:"_id,omitempty"`
 	Name            string                 `json:"name,omitempty"`
@@ -184,7 +184,7 @@ type EventTrigger struct {
 	LastModified    *int64                 `json:"last_modified,omitempty"`
 }
 
-// EventTriggerRequest Represents a request of create a trigger
+// EventTriggerRequest Represents a request of create a trigger.
 type EventTriggerRequest struct {
 	Name            string                 `json:"name,omitempty"`
 	Type            string                 `json:"type,omitempty"`
@@ -194,7 +194,7 @@ type EventTriggerRequest struct {
 	EventProcessors map[string]interface{} `json:"event_processors,omitempty"`
 }
 
-// EventTriggerConfig Represents a request of a trigger config
+// EventTriggerConfig Represents a request of a trigger config.
 type EventTriggerConfig struct {
 	OperationTypes           []string    `json:"operation_types,omitempty"`
 	OperationType            string      `json:"operation_type,omitempty"`

@@ -6,7 +6,7 @@ require (
 	github.com/go-test/deep v1.1.0
 	github.com/google/go-querystring v1.1.0
 	github.com/openlyinc/pointy v1.2.0
-	go.mongodb.org/atlas v0.24.0
+	go.mongodb.org/atlas v0.25.0
 )
 
 require github.com/stretchr/testify v1.4.0 // indirect

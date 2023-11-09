@@ -13,8 +13,8 @@ github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZN
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.4.0 h1:2E4SXV/wtOkTonXsotYi4li6zVWxYlZuYNCXe9XRJyk=
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
-go.mongodb.org/atlas v0.31.0 h1:NgLqsNYm6wDYeDUO90etw1sl8T1U2DUKu36eUdnrFSI=
-go.mongodb.org/atlas v0.31.0/go.mod h1:L4BKwVx/OeEhOVjCSdgo90KJm4469iv7ZLzQms/EPTg=
+go.mongodb.org/atlas v0.34.0 h1:C6pDYjKWbjSZCsNoZpgNO6I5e/jH7OVwoQ0OXcoAFCg=
+go.mongodb.org/atlas v0.34.0/go.mod h1:L4BKwVx/OeEhOVjCSdgo90KJm4469iv7ZLzQms/EPTg=
 golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v2 v2.2.2 h1:ZCJp+EgiOT7lHqUV2J862kp8Qj64Jo6az82+3Td9dZw=

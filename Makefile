@@ -7,6 +7,10 @@ COVERAGE=coverage.out
 export PATH := ./bin:$(PATH)
 export GO111MODULE := on
 
+.PHONY: build
+build:
+	go install $(SOURCE_FILES)
+	
 .PHONY: setup
 setup:  ## Install dev tools
 	@echo "==> Installing dependencies..."

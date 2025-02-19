@@ -1,6 +1,6 @@
-module go.mongodb.org/realm
+module go.mongodb.org/atlas-appservices
 
-go 1.18
+go 1.23
 
 require (
 	github.com/go-test/deep v1.1.1

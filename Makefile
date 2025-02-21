@@ -1,14 +1,16 @@
 # A Self-Documenting Makefile: http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 
 SOURCE_FILES?=./...
-GOLANGCI_VERSION=v1.40.1
+GOLANGCI_VERSION=v1.62.2
 COVERAGE=coverage.out
 
 export PATH := ./bin:$(PATH)
 export GO111MODULE := on
 
+default: build
+
 .PHONY: build
-build:
+build:	## Compile code
 	go install $(SOURCE_FILES)
 	
 .PHONY: setup

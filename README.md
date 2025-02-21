@@ -6,7 +6,7 @@ A Go HTTP client for the [MongoDB Atlas App Services Admin API](https://www.mong
 ## Usage
 
 ```go
-import "go.mongodb.org/atlas-appservices/appservices"
+import "github.com/mongodb-labs/go-client-mongodb-atlas-app-services/appservices"
 ```
 
 Construct a new App Services client, then use the various services on the client to

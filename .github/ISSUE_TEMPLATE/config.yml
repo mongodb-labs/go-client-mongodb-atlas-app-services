@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: MongoDB Realm Support
+  - name: MongoDB Atlas App Services Support
     url: https://support.mongodb.com/
     about: Support is provided under MongoDB support plans. Please submit support questions within the Realm UI.
-  - name: MongoDB Realm
-    url: https://www.mongodb.com/realm
-    about: Learn more about MongoDB Realm
+  - name: MongoDB MongoDB Atlas App Services
+    url: https://www.mongodb.com/docs/atlas/app-services/
+    about: Learn more about MongoDB MongoDB Atlas App Services

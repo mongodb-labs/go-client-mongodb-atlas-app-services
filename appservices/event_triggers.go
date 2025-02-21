@@ -210,4 +210,6 @@ type EventTriggerConfig struct {
 	ScheduleType             string      `json:"schedule_type,omitempty"`
 	Unordered                *bool       `json:"unordered,omitempty"`
 	ClusterName              string      `json:"clusterName,omitempty"`
+	TolerateResumeErrors     *bool       `json:"tolerate_resume_errors,omitempty"`
+	SkipCatchupEvents        *bool       `json:"skip_catchup_events,omitempty"`
 }

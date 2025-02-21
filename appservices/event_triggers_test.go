@@ -128,6 +128,8 @@ func TestEventTriggers_CreateDatabase(t *testing.T) {
 			Project:                  `{"updateDescription.updatedFields.FieldA": 1, "operationType": 1}`,
 			FullDocument:             pointy.Bool(false),
 			FullDocumentBeforeChange: pointy.Bool(false),
+			TolerateResumeErrors: pointy.Bool(true),
+			SkipCatchupEvents: pointy.Bool(false),
 			Unordered:                pointy.Bool(false),
 		},
 		EventProcessors: map[string]interface{}{
@@ -159,6 +161,8 @@ func TestEventTriggers_CreateDatabase(t *testing.T) {
 				"full_document":               false,
 				"full_document_before_change": false,
 				"unordered":                   false,
+				"tolerate_resume_errors":      true,
+				"skip_catchup_events":         false,
 			},
 			"event_processors": map[string]interface{}{
 				"AWS_EVENTBRIDGE": map[string]interface{}{
@@ -204,7 +208,9 @@ func TestEventTriggers_CreateDatabase(t *testing.T) {
 		  "project": {"updateDescription.updatedFields.FieldA": 1, "operationType": 1},
 		  "full_document": false,
 		  "full_document_before_change": false,
-		  "unordered": false
+		  "unordered": false,
+		  "tolerate_resume_errors": true,
+		  "skip_catchup_events": false
 		 },
 		"event_processors": {
 		   "AWS_EVENTBRIDGE": {
@@ -248,6 +254,8 @@ func TestEventTriggers_CreateDatabase(t *testing.T) {
 			FullDocument:             pointy.Bool(false),
 			FullDocumentBeforeChange: pointy.Bool(false),
 			Unordered:                pointy.Bool(false),
+			TolerateResumeErrors: pointy.Bool(true),
+			SkipCatchupEvents: pointy.Bool(false),
 			ClusterName:              "cluster name",
 		},
 		EventProcessors: map[string]interface{}{

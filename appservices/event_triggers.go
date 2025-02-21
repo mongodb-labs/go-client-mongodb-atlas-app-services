@@ -212,4 +212,5 @@ type EventTriggerConfig struct {
 	ClusterName              string      `json:"clusterName,omitempty"`
 	TolerateResumeErrors     *bool       `json:"tolerate_resume_errors,omitempty"`
 	SkipCatchupEvents        *bool       `json:"skip_catchup_events,omitempty"`
+	MaximumThroughput        *bool       `json:"maximum_throughput,omitempty"`
 }

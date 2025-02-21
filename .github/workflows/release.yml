@@ -1,0 +1,95 @@
+name: 'New Release'
+run-name: 'Release ${{ inputs.version_number }} (use existing tag: ${{ inputs.use_existing_tag}})'
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_number:
+        description: 'Version number (e.g., v1.0.0, v1.0.0-pre, v1.0.0-pre1)'
+        required: true
+      use_existing_tag:
+        description: 'Set value to `true` to use an existing tag for the release process, default is `false`'
+        default: 'false'
+
+jobs:
+
+  release-config:
+    runs-on: ubuntu-latest
+    permissions: {}
+    outputs:
+      creates_new_tag: ${{ steps.evaluate_inputs.outputs.creates_new_tag }}
+    steps:
+      - id: evaluate_inputs
+        run: |
+          {
+            echo "creates_new_tag=$(if [ '${{ inputs.use_existing_tag }}' = 'true' ]; then echo 'false'; else echo 'true'; fi)"
+          } >> "$GITHUB_OUTPUT"
+
+  validate-inputs:
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Validation of version format
+        run: |
+          echo "${{ inputs.version_number }}" | grep -P '^v\d+\.\d+\.\d+(-pre[A-Za-z0-9-]*)?$'
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ inputs.use_existing_tag == 'true' && inputs.version_number || 'master' }
+
+  create-tag:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    needs: [ release-config, validate-inputs ]
+    if: >-
+      !cancelled()
+      && !contains(needs.*.result, 'failure') 
+      && needs.release-config.outputs.creates_new_tag == 'true'
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: 'master'
+      - name: Get the latest commit SHA
+        id: get-sha
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Create release tag
+        uses: rickstaa/action-create-tag@a1c7777fcb2fee4f19b0f283ba888afa11678b72
+        with:
+          tag: ${{ inputs.version_number }}
+          commit_sha: ${{ steps.get-sha.outputs.sha }}
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg_passphrase: ${{ secrets.PASSPHRASE }}
+
+  release:
+    runs-on: ubuntu-latest
+    permissions: 
+      contents: write
+    needs: [ validate-inputs, create-tag ]
+    if: >-
+      !cancelled()
+      && !contains(needs.*.result, 'failure')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ inputs.version_number }}
+      - name: Set up Go
+        uses: actions/setup-go@f111f3307d8850f501ac008e886eec1fd1932a34
+        with:
+          go-version-file: 'go.mod'
+      - name: Import GPG key
+        id: import_gpg
+        uses: crazy-max/ghaction-import-gpg@cb9bde2e2525e640591a934b1fd28eef1dcaf5e5
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@90a3faa9d0182683851fbfa97ca1a2cb983bfca3
+        with:
+          version: '~> v2'
+          args: release --clean
+        env:
+          GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

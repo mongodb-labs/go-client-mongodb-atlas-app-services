@@ -1,4 +1,4 @@
-module go.mongodb.org/atlas-appservices
+module github.com/mongodb-labs/go-client-mongodb-atlas-app-services
 
 go 1.23
 

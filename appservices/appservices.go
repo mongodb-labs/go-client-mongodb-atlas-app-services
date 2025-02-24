@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package appservices // import "go.mongodb.org/realm/realm"
+package appservices // import "github.com/mongodb-labs/go-client-mongodb-atlas-app-services/appservices"
 
 import (
 	"bytes"
@@ -27,9 +27,9 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/google/go-querystring/query"
-
 	"go.mongodb.org/atlas/mongodbatlas"
+
+	"github.com/google/go-querystring/query"
 )
 
 const (

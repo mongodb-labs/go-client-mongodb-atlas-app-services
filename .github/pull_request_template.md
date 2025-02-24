@@ -1,7 +1,5 @@
 <!--
-Thanks for contributing to MongoDB Ops Manager Go Client!
-
-Before you submit your pull request, please be sure that you've reviewed our contributing guidelines: https://github.com/mongodb/go-client-mongodb-ops-manager/blob/master/CONTRIBUTING.md
+Thanks for contributing to Atlas App Services Go client!
 
 Please fill out the information below to help speed the review along, and hopefully
 the merge of your pull request!
@@ -9,15 +7,23 @@ the merge of your pull request!
 
 ## Proposed changes
 
-<!-- 
+<!-- s
 Describe the big picture of your changes here and communicate why we should accept this pull request. 
 If it fixes a bug or resolves a feature request, be sure to link to that issue. 
 -->
 
 _Jira ticket:_ 
 
+## Type of change:
+
+- [ ] Bug fix (non-breaking change which fixes an issue).
+- [ ] New feature (non-breaking change which adds functionality). 
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected).
+- [ ] This change requires a documentation update
+- [ ] Documentation fix/enhancement
+
 <!--
-What MongoDB Ops Manager Go Client issue does this PR address? (for example, #1234), remove this section if none
+What Atlas App Services Go client issue does this PR address? (for example, #1234), remove this section if none
 -->
 
 Closes #[issue number]
@@ -29,10 +35,10 @@ Put an `x` in the boxes that apply. You can also fill these out after creating t
 don't hesitate to ask. We're here to help! This is simply a reminder of what we are going to look for before merging your code.
 -->
 
-- [] I have signed the [MongoDB CLA](https://www.mongodb.com/legal/contributor-agreement)
-- [] I have added tests that prove my fix is effective or that my feature works
-- [] I have added any necessary documentation (if appropriate)
-- [] I have run `make fmt` and formatted my code
+- [ ] I have signed the [MongoDB CLA](https://www.mongodb.com/legal/contributor-agreement)
+- [ ] I have added tests that prove my fix is effective or that my feature works
+- [ ] I have added any necessary documentation (if appropriate)
+- [ ] I have run `make fmt` and formatted my code
 
 ## Further comments
 

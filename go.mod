@@ -12,3 +12,6 @@ require (
 )
 
 require github.com/stretchr/testify v1.4.0 // indirect
+
+// Incorrect release versioning
+retract v1.0.0

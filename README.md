@@ -1,5 +1,6 @@
 # go-client-mongodb-atlas-app-services
-[![PkgGoDev](https://pkg.go.dev/github.com/mongodb-labs/go-client-mongodb-atlas-app-services)](https://pkg.go.dev/github.com/mongodb-labs/go-client-mongodb-atlas-app-services)
+[![Go Reference](https://pkg.go.dev/badge/github.com/mongodb-labs/go-client-mongodb-atlas-app-services.svg)](https://pkg.go.dev/github.com/mongodb-labs/go-client-mongodb-atlas-app-services)
+
 
 A Go HTTP client for the [MongoDB Atlas App Services Admin API](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/).
 

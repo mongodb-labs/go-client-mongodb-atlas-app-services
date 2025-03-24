@@ -333,3 +333,7 @@ func CheckResponse(r *http.Response) error {
 
 	return errorResponse
 }
+
+func pointer[T any](x T) *T {
+	return &x
+}

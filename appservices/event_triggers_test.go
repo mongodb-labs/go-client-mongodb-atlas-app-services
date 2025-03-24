@@ -21,7 +21,6 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/openlyinc/pointy"
 )
 
 func TestEventTriggers_List(t *testing.T) {
@@ -57,7 +56,7 @@ func TestEventTriggers_List(t *testing.T) {
 			Type:         "type",
 			FunctionID:   "1",
 			FunctionName: "name",
-			Disabled:     pointy.Bool(false),
+			Disabled:     pointer(false),
 		},
 	}
 
@@ -99,7 +98,7 @@ func TestEventTriggers_Get(t *testing.T) {
 		Type:         "type",
 		FunctionID:   "1",
 		FunctionName: "name",
-		Disabled:     pointy.Bool(false),
+		Disabled:     pointer(false),
 	}
 
 	if diff := deep.Equal(trigger, &expected); diff != nil {
@@ -118,7 +117,7 @@ func TestEventTriggers_CreateDatabase(t *testing.T) {
 		Name:       "Test event trigger",
 		Type:       "DATABASE",
 		FunctionID: "60c2badbbd2b5c170e91292d",
-		Disabled:   pointy.Bool(false),
+		Disabled:   pointer(false),
 		Config: &EventTriggerConfig{
 			OperationTypes:           []string{"INSERT", "UPDATE", "REPLACE", "DELETE"},
 			Database:                 "database",
@@ -126,12 +125,12 @@ func TestEventTriggers_CreateDatabase(t *testing.T) {
 			ServiceID:                "60c2badbbd2b5c170e91292c",
 			Match:                    `{"updateDescription.updatedFields.status": {"$exists": true}}`,
 			Project:                  `{"updateDescription.updatedFields.FieldA": 1, "operationType": 1}`,
-			FullDocument:             pointy.Bool(false),
-			FullDocumentBeforeChange: pointy.Bool(false),
-			TolerateResumeErrors:     pointy.Bool(true),
-			SkipCatchupEvents:        pointy.Bool(true),
-			MaximumThroughput:        pointy.Bool(true),
-			Unordered:                pointy.Bool(false),
+			FullDocument:             pointer(false),
+			FullDocumentBeforeChange: pointer(false),
+			TolerateResumeErrors:     pointer(true),
+			SkipCatchupEvents:        pointer(true),
+			MaximumThroughput:        pointer(true),
+			Unordered:                pointer(false),
 		},
 		EventProcessors: map[string]interface{}{
 			"AWS_EVENTBRIDGE": map[string]interface{}{
@@ -239,7 +238,7 @@ func TestEventTriggers_CreateDatabase(t *testing.T) {
 		Type:         "DATABASE",
 		FunctionID:   "60c2badbbd2b5c170e91292d",
 		FunctionName: "name",
-		Disabled:     pointy.Bool(false),
+		Disabled:     pointer(false),
 		Config: EventTriggerConfig{
 			OperationTypes: []string{"INSERT", "UPDATE", "REPLACE", "DELETE"},
 			Database:       "sample_airbnb",
@@ -254,12 +253,12 @@ func TestEventTriggers_CreateDatabase(t *testing.T) {
 				"operationType":                          float64(1),
 				"updateDescription.updatedFields.FieldA": float64(1),
 			},
-			FullDocument:             pointy.Bool(false),
-			FullDocumentBeforeChange: pointy.Bool(false),
-			Unordered:                pointy.Bool(false),
-			TolerateResumeErrors:     pointy.Bool(true),
-			SkipCatchupEvents:        pointy.Bool(true),
-			MaximumThroughput:        pointy.Bool(true),
+			FullDocument:             pointer(false),
+			FullDocumentBeforeChange: pointer(false),
+			Unordered:                pointer(false),
+			TolerateResumeErrors:     pointer(true),
+			SkipCatchupEvents:        pointer(true),
+			MaximumThroughput:        pointer(true),
 			ClusterName:              "cluster name",
 		},
 		EventProcessors: map[string]interface{}{
@@ -271,7 +270,7 @@ func TestEventTriggers_CreateDatabase(t *testing.T) {
 				},
 			},
 		},
-		LastModified: pointy.Int64(int64(1623793011)),
+		LastModified: pointer(int64(1623793011)),
 	}
 
 	if diff := deep.Equal(updatedEventTriggersServiceOp, &expected); diff != nil {
@@ -290,7 +289,7 @@ func TestEventTriggers_CreateAuthentication(t *testing.T) {
 		Name:       "Test event trigger",
 		Type:       "AUTHENTICATION",
 		FunctionID: "60c2badbbd2b5c170e91292d",
-		Disabled:   pointy.Bool(false),
+		Disabled:   pointer(false),
 		Config: &EventTriggerConfig{
 			OperationType: "LOGIN",
 			Providers:     []string{"anon-user", "local-userpass"},
@@ -379,7 +378,7 @@ func TestEventTriggers_CreateAuthentication(t *testing.T) {
 		Type:         "AUTHENTICATION",
 		FunctionID:   "60c2badbbd2b5c170e91292d",
 		FunctionName: "name",
-		Disabled:     pointy.Bool(false),
+		Disabled:     pointer(false),
 		Config: EventTriggerConfig{
 			OperationType: "LOGIN",
 			Providers:     []string{"anon-user", "local-userpass"},
@@ -395,7 +394,7 @@ func TestEventTriggers_CreateAuthentication(t *testing.T) {
 				},
 			},
 		},
-		LastModified: pointy.Int64(int64(1623793011)),
+		LastModified: pointer(int64(1623793011)),
 	}
 
 	if diff := deep.Equal(updatedEventTriggersServiceOp, &expected); diff != nil {
@@ -414,7 +413,7 @@ func TestEventTriggers_CreateScheduled(t *testing.T) {
 		Name:       "Test event trigger",
 		Type:       "SCHEDULED",
 		FunctionID: "60c2badbbd2b5c170e91292d",
-		Disabled:   pointy.Bool(false),
+		Disabled:   pointer(false),
 		Config: &EventTriggerConfig{
 			Schedule: "* * * * *",
 		},
@@ -496,7 +495,7 @@ func TestEventTriggers_CreateScheduled(t *testing.T) {
 		Type:         "SCHEDULED",
 		FunctionID:   "60c2badbbd2b5c170e91292d",
 		FunctionName: "name",
-		Disabled:     pointy.Bool(false),
+		Disabled:     pointer(false),
 		Config: EventTriggerConfig{
 			Schedule:     "* * * * *",
 			ScheduleType: "ADVANCED",
@@ -510,7 +509,7 @@ func TestEventTriggers_CreateScheduled(t *testing.T) {
 				},
 			},
 		},
-		LastModified: pointy.Int64(int64(1623793011)),
+		LastModified: pointer(int64(1623793011)),
 	}
 
 	if diff := deep.Equal(updatedEventTriggersServiceOp, &expected); diff != nil {
@@ -530,7 +529,7 @@ func TestEventTriggers_Update(t *testing.T) {
 		Name:       "Test event trigger update",
 		Type:       "Test event trigger update",
 		FunctionID: "1",
-		Disabled:   pointy.Bool(false),
+		Disabled:   pointer(false),
 		Config: &EventTriggerConfig{
 			OperationTypes: []string{"INSERT", "UPDATE"},
 			OperationType:  "CREATE",
@@ -540,7 +539,7 @@ func TestEventTriggers_Update(t *testing.T) {
 			ServiceID:      "3",
 			Match:          `{"updateDescription.updatedFields.status": {"$exists": true}}`,
 			Project:        `{"updateDescription.updatedFields.FieldA": 1, "operationType": 1}`,
-			FullDocument:   pointy.Bool(false),
+			FullDocument:   pointer(false),
 			Schedule:       "weekday",
 		},
 		EventProcessors: map[string]interface{}{
@@ -616,7 +615,7 @@ func TestEventTriggers_Update(t *testing.T) {
 		Type:         "type",
 		FunctionID:   "1",
 		FunctionName: "name",
-		Disabled:     pointy.Bool(false),
+		Disabled:     pointer(false),
 	}
 
 	if diff := deep.Equal(updatedEventTriggersServiceOp, &expected); diff != nil {

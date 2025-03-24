@@ -1,5 +1,5 @@
-# go-client-mongodb-atlas-app-services (WIP)
-[![PkgGoDev](https://pkg.go.dev/badge/go.mongodb.org/realm)](https://pkg.go.dev/go.mongodb.org/realm)
+# go-client-mongodb-atlas-app-services
+[![PkgGoDev](https://pkg.go.dev/github.com/mongodb-labs/go-client-mongodb-atlas-app-services)](https://pkg.go.dev/github.com/mongodb-labs/go-client-mongodb-atlas-app-services)
 
 A Go HTTP client for the [MongoDB Atlas App Services Admin API](https://www.mongodb.com/docs/atlas/app-services/admin/api/v3/).
 

@@ -10,10 +10,6 @@ linters-settings:
       - octalLiteral
   gocyclo:
     min-complexity: 15
-  govet:
-    shadow: true
-  maligned:
-    suggest-new: true
   revive:
     # see https://github.com/mgechev/revive#available-rules for details.
     ignore-generated-header: true
@@ -47,14 +43,6 @@ linters-settings:
       - name: unused-receiver
       - name: unreachable-code
       - name: redefines-builtin-id
-  tagliatelle:
-    # check the struck tag name case
-    case:
-      use-field-name: true
-      rules:
-        json: camel
-        yaml: camel
-
 linters:
   # please, do not use `enable-all`: it's deprecated and will be removed soon.
   # inverted configuration with `enable-all` and `disable` is not scalable during updates of golangci-lint

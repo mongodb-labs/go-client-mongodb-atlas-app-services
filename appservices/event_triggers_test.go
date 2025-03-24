@@ -634,7 +634,7 @@ func TestEventTriggers_Delete(t *testing.T) {
 
 	path := fmt.Sprintf("/groups/%s/apps/%s/triggers/%s", groupID, appID, triggerID)
 
-	mux.HandleFunc(path, func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc(path, func(_ http.ResponseWriter, r *http.Request) {
 		testMethod(t, r, http.MethodDelete)
 	})
 

@@ -76,7 +76,7 @@ jobs:
         with:
           ref: ${{ inputs.version_number }}
       - name: Set up Go
-        uses: actions/setup-go@f111f3307d8850f501ac008e886eec1fd1932a34
+        uses: actions/setup-go@44694675825211faa026b3c33043df3e48a5fa00
         with:
           go-version-file: 'go.mod'
       - name: Import GPG key

@@ -82,14 +82,6 @@ linters:
       - common-false-positives
       - legacy
       - std-error-handling
-    rules:
-      - linters:
-          - govet
-        text: "fieldalignment: struct with 232 pointer bytes could be 224"
-      - path: event_triggers\.go
-        linters:
-          - govet
-        text: "fieldalignment:.*EventTriggerConfig"
 formatters:
   enable:
     - gofmt

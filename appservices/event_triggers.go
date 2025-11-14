@@ -176,12 +176,12 @@ type EventTrigger struct {
 	EventProcessors map[string]interface{} `json:"event_processors,omitempty"`
 	Disabled        *bool                  `json:"disabled,omitempty"`
 	LastModified    *int64                 `json:"last_modified,omitempty"`
-	Config          EventTriggerConfig     `json:"config,omitempty"`
 	ID              string                 `json:"_id,omitempty"`
 	Name            string                 `json:"name,omitempty"`
 	Type            string                 `json:"type,omitempty"`
 	FunctionID      string                 `json:"function_id,omitempty"`
 	FunctionName    string                 `json:"function_name,omitempty"`
+	Config          EventTriggerConfig     `json:"config,omitempty"`
 }
 
 // EventTriggerRequest Represents a request of create a trigger.
@@ -196,21 +196,21 @@ type EventTriggerRequest struct {
 
 // EventTriggerConfig Represents a request of a trigger config.
 type EventTriggerConfig struct {
-	OperationTypes           []string    `json:"operation_types,omitempty"`
-	Providers                []string    `json:"providers,omitempty"`
+	Match                    interface{} `json:"match,omitempty"`
+	Project                  interface{} `json:"project,omitempty"`
+	Unordered                *bool       `json:"unordered,omitempty"`
 	FullDocument             *bool       `json:"full_document,omitempty"`
 	FullDocumentBeforeChange *bool       `json:"full_document_before_change,omitempty"`
-	Unordered                *bool       `json:"unordered,omitempty"`
 	TolerateResumeErrors     *bool       `json:"tolerate_resume_errors,omitempty"`
 	SkipCatchupEvents        *bool       `json:"skip_catchup_events,omitempty"`
 	MaximumThroughput        *bool       `json:"maximum_throughput,omitempty"`
-	Match                    interface{} `json:"match,omitempty"`
-	Project                  interface{} `json:"project,omitempty"`
+	Collection               string      `json:"collection,omitempty"`
 	OperationType            string      `json:"operation_type,omitempty"`
 	Database                 string      `json:"database,omitempty"`
-	Collection               string      `json:"collection,omitempty"`
 	ServiceID                string      `json:"service_id,omitempty"`
 	Schedule                 string      `json:"schedule,omitempty"`
 	ScheduleType             string      `json:"schedule_type,omitempty"`
 	ClusterName              string      `json:"clusterName,omitempty"`
+	Providers                []string    `json:"providers,omitempty"`
+	OperationTypes           []string    `json:"operation_types,omitempty"`
 }

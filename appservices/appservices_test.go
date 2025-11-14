@@ -142,8 +142,7 @@ func TestNewRequest_withUserData(t *testing.T) {
 
 	inURL, outURL := requestPath, defaultBaseURL+requestPath
 	inBody, outBody := &testRequestBody{TestName: "l", TestUserData: "u"},
-		`{"testName":"l","testCounter":0,`+
-			`"testUserData":"u"}`+"\n"
+		`{"testName":"l","testUserData":"u","testCounter":0}`+"\n"
 	req, _ := c.NewRequest(ctx, http.MethodGet, inURL, inBody)
 
 	// test relative URL was expanded

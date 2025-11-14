@@ -131,8 +131,8 @@ func TestNew(t *testing.T) {
 
 type testRequestBody struct {
 	TestName     string `json:"testName"`
-	TestCounter  int64  `json:"testCounter"`
 	TestUserData string `json:"testUserData"`
+	TestCounter  int64  `json:"testCounter"`
 }
 
 func TestNewRequest_withUserData(t *testing.T) {

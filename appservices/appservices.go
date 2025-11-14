@@ -49,17 +49,15 @@ type (
 
 // Client manages communication with Ops Manager API.
 type Client struct {
-	client    *http.Client
-	BaseURL   *url.URL
-	UserAgent string
+	client             *http.Client
+	BaseURL            *url.URL
+	Apps               AppsService
+	EventTriggers      EventTriggersService
+	onRequestCompleted RequestCompletionCallback
+	UserAgent          string
 
 	// copy raw atlas server response to the Response struct
 	withRaw bool
-
-	Apps          AppsService
-	EventTriggers EventTriggersService
-
-	onRequestCompleted RequestCompletionCallback
 }
 
 type service struct {

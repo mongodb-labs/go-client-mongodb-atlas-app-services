@@ -33,7 +33,7 @@ jobs:
         run: |
           echo "${{ inputs.version_number }}" | grep -P '^v\d+\.\d+\.\d+(-pre[A-Za-z0-9-]*)?$'
       - name: Checkout
-        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd
+        uses: actions/checkout@c2d88d3ecc89a9ef08eebf45d9637801dcee7eb5
         with:
           ref: ${{ inputs.use_existing_tag == 'true' && inputs.version_number || 'main' }}
 
@@ -48,7 +48,7 @@ jobs:
       && needs.release-config.outputs.creates_new_tag == 'true'
     steps: 
       - name: Checkout
-        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd
+        uses: actions/checkout@c2d88d3ecc89a9ef08eebf45d9637801dcee7eb5
         with:
           ref: 'main'
       - name: Get the latest commit SHA
@@ -72,7 +72,7 @@ jobs:
       && !contains(needs.*.result, 'failure')
     steps:
       - name: Checkout
-        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd
+        uses: actions/checkout@c2d88d3ecc89a9ef08eebf45d9637801dcee7eb5
         with:
           ref: ${{ inputs.version_number }}
       - name: Set up Go

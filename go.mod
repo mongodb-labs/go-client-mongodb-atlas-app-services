@@ -1,8 +1,6 @@
 module github.com/mongodb-labs/go-client-mongodb-atlas-app-services
 
-go 1.23
-
-toolchain go1.23.1
+go 1.24
 
 require (
 	github.com/go-test/deep v1.1.1
